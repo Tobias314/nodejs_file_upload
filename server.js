@@ -45,10 +45,6 @@ app.post('/upload', function (req, res, next) {
                 if (err) { throw err }
                 console.log("Done!")
             });
-            fs.unlink(oldPath, function(err){
-                if(err) {throw err }
-                console.log("Done deleting tmp file!")
-            });
           });
     });
 })
