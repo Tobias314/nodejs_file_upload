@@ -13,7 +13,7 @@ console.log("START")
 
 var storage = multer.diskStorage({
     destination: function (req, file, callback) {
-        var dir = './tmp';
+        var dir = './uploads/tmp';
         if (!fs.existsSync(dir)){
             fs.mkdirSync(dir);
         }
@@ -36,7 +36,7 @@ app.post('/upload', function (req, res, next) {
 
         req.files.forEach(file => {
             var oldPath = file.path;
-            var newFolder = "./uploads/" + req.body.folder;
+            var newFolder = "./uploads/uploads/" + req.body.folder;
             if (!fs.existsSync(newFolder)) {
                 fs.mkdirSync(newFolder)
             }
