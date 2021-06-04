@@ -22,15 +22,15 @@
     <div class="container">
         <form action="/upload" method="post" enctype="multipart/form-data">
             <input type="file" name="files"
-            class="btn btn-primary" id="file"
-            multiple>
+            class="btn btn-primary" id="data">
+            <input type="text" name="folder">
             <button class="btn btn-primary" type="submit" style="border-radius: 4px;">
                 Upload
             </button>
         </form>
     </div>
     <script type="text/javascript">
-        document.getElementById("file").value = "";
+        document.getElementById("data").value = "";
     </script>
 </body>
 </html>

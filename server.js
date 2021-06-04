@@ -9,9 +9,13 @@ app.get('/', (req, res) => {
     res.render('index');
 });
 
+console.log("START")
+
 var storage = multer.diskStorage({
     destination: function (req, file, callback) {
-        var dir = './uploads';
+        console.log(req)
+        console.log(req.body)
+        var dir = './uploads/' + "test";
         if (!fs.existsSync(dir)){
             fs.mkdirSync(dir);
         }
@@ -21,10 +25,12 @@ var storage = multer.diskStorage({
         callback(null, file.originalname);
     }
 });
-var upload = multer({storage: storage}).array('files', 12);
+var upload = multer({storage: storage}).array('files',12);
 app.post('/upload', function (req, res, next) {
     upload(req, res, function (err) {
+        console.log(req.body.folder)
         if (err) {
+            console.log(err);
             return res.end("Something went wrong:(");
         }
         res.end("Upload completed.");
