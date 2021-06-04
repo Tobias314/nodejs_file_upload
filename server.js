@@ -13,7 +13,7 @@ console.log("START")
 
 var storage = multer.diskStorage({
     destination: function (req, file, callback) {
-        var dir = './uploads/' + "tmp";
+        var dir = './tmp';
         if (!fs.existsSync(dir)){
             fs.mkdirSync(dir);
         }
@@ -26,6 +26,8 @@ var storage = multer.diskStorage({
 var upload = multer({storage: storage}).array('files',12);
 app.post('/upload', function (req, res, next) {
     upload(req, res, function (err) {
+        console.log("uploading something")
+        console.log(req.body)
         if (err) {
             console.log(err);
             return res.end("Something went wrong:(");
@@ -43,7 +45,11 @@ app.post('/upload', function (req, res, next) {
                 if (err) { throw err }
                 console.log("Done!")
             });
-        })
+            fs.unlink(oldPath, function(err){
+                if(err) {throw err }
+                console.log("Done deleting tmp file!")
+            });
+          });
     });
 })
 
