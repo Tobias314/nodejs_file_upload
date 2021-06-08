@@ -36,11 +36,11 @@ app.post('/upload', function (req, res, next) {
 
         req.files.forEach(file => {
             var oldPath = file.path;
-            var newFolder = "./uploads/uploads/" + req.body.folder;
+            var newFolder = "uploads/uploads/" + req.body.folder;
             if (!fs.existsSync(newFolder)) {
                 fs.mkdirSync(newFolder)
             }
-            var newPath = "./uploads/" + req.body.folder + "/" + file.filename;
+            var newPath = "uploads/uploads/" + req.body.folder + "/" + file.filename;
             fs.rename(oldPath, newPath, function(err) {
                 if (err) { throw err }
                 console.log("Done!")
